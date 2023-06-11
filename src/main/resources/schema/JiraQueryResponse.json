@@ -1,0 +1,187 @@
+{
+  "expand": "names,schema",
+  "startAt": 0,
+  "maxResults": 50,
+  "total": 1,
+  "issues": [
+    {
+      "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+      "id": "10000",
+      "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/issue/10000",
+      "key": "CHAR-1",
+      "fields": {
+        "statuscategorychangedate": "2023-06-10T17:54:32.248-0700",
+        "issuetype": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/issuetype/10002",
+          "id": "10002",
+          "description": "Epics track collections of related bugs, stories, and tasks.",
+          "iconUrl": "https://bhaskarmantralahub.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+          "name": "Epic",
+          "subtask": false,
+          "avatarId": 10307,
+          "entityId": "b89d100f-cf3c-4555-a151-c4476bb7d08d",
+          "hierarchyLevel": 1
+        },
+        "timespent": null,
+        "customfield_10030": null,
+        "customfield_10031": null,
+        "project": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/project/10000",
+          "id": "10000",
+          "key": "CHAR",
+          "name": "Charter",
+          "projectTypeKey": "software",
+          "simplified": true,
+          "avatarUrls": {
+            "48x48": "https://bhaskarmantralahub.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10406",
+            "24x24": "https://bhaskarmantralahub.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10406?size=small",
+            "16x16": "https://bhaskarmantralahub.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10406?size=xsmall",
+            "32x32": "https://bhaskarmantralahub.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10406?size=medium"
+          }
+        },
+        "customfield_10032": [],
+        "customfield_10033": null,
+        "fixVersions": [],
+        "aggregatetimespent": null,
+        "customfield_10034": null,
+        "customfield_10035": null,
+        "resolution": null,
+        "customfield_10027": null,
+        "customfield_10028": null,
+        "customfield_10029": null,
+        "resolutiondate": null,
+        "workratio": -1,
+        "watches": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/issue/CHAR-1/watchers",
+          "watchCount": 1,
+          "isWatching": true
+        },
+        "lastViewed": "2023-06-10T18:25:26.589-0700",
+        "created": "2023-06-10T17:54:32.042-0700",
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "customfield_10022": null,
+        "priority": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://bhaskarmantralahub.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "customfield_10023": null,
+        "customfield_10024": null,
+        "customfield_10025": null,
+        "customfield_10026": null,
+        "labels": [],
+        "customfield_10016": null,
+        "customfield_10017": "purple",
+        "customfield_10018": {
+          "hasEpicLinkFieldDependency": false,
+          "showField": false,
+          "nonEditableReason": {
+            "reason": "PLUGIN_LICENSE_ERROR",
+            "message": "The Parent Link is only available to Jira Premium users."
+          }
+        },
+        "customfield_10019": "0|hzzzzz:",
+        "aggregatetimeoriginalestimate": null,
+        "timeestimate": null,
+        "versions": [],
+        "issuelinks": [],
+        "assignee": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/user?accountId=712020%3A6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "accountId": "712020:6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "emailAddress": "bhaskarmantrala@icloud.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "24x24": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "16x16": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "32x32": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png"
+          },
+          "displayName": "Bhaskar",
+          "active": true,
+          "timeZone": "America/Los_Angeles",
+          "accountType": "atlassian"
+        },
+        "updated": "2023-06-10T17:55:26.785-0700",
+        "status": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/status/10000",
+          "description": "",
+          "iconUrl": "https://bhaskarmantralahub.atlassian.net/",
+          "name": "To Do",
+          "id": "10000",
+          "statusCategory": {
+            "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/statuscategory/2",
+            "id": 2,
+            "key": "new",
+            "colorName": "blue-gray",
+            "name": "To Do"
+          }
+        },
+        "components": [],
+        "timeoriginalestimate": null,
+        "description": "Test Description12345",
+        "customfield_10010": null,
+        "customfield_10014": null,
+        "customfield_10015": null,
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": null,
+        "customfield_10009": null,
+        "aggregatetimeestimate": null,
+        "summary": "Test Epic 1",
+        "creator": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/user?accountId=712020%3A6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "accountId": "712020:6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "emailAddress": "bhaskarmantrala@icloud.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "24x24": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "16x16": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "32x32": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png"
+          },
+          "displayName": "Bhaskar",
+          "active": true,
+          "timeZone": "America/Los_Angeles",
+          "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "reporter": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/user?accountId=712020%3A6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "accountId": "712020:6c92a08f-b046-4437-aabe-e01e8d9fa0b4",
+          "emailAddress": "bhaskarmantrala@icloud.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "24x24": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "16x16": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png",
+            "32x32": "https://secure.gravatar.com/avatar/4713941eff977f29752337c20009b556?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FB-1.png"
+          },
+          "displayName": "Bhaskar",
+          "active": true,
+          "timeZone": "America/Los_Angeles",
+          "accountType": "atlassian"
+        },
+        "aggregateprogress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10001": null,
+        "customfield_10002": null,
+        "customfield_10003": null,
+        "customfield_10004": null,
+        "environment": null,
+        "duedate": null,
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "votes": {
+          "self": "https://bhaskarmantralahub.atlassian.net/rest/api/2/issue/CHAR-1/votes",
+          "votes": 0,
+          "hasVoted": false
+        }
+      }
+    }
+  ]
+}

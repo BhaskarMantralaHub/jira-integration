@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+jira:
+  userName: bhaskarmantrala@icloud.com
+  token: ATATT3xFfGF0G89wk9EBiP0U-0lsVPo8n9OoGCOUdEvr5qGGGHnwEb7Jp6VAEfX2DTFnrX9uUJ5wDTj0iokty08YcPLRzqhax2XhACJINy28xIeESB5UnODO9ET5olut5jNltDKL8MedpB0cGNMba9iG7LMKtUYQFxyQ53iJhv76Hm01Hdh-WV0=B39AEB28
+  project: charter
+  issueType: Epic
+  baseuri: https://bhaskarmantralahub.atlassian.net/rest/api/2/search?jql=
