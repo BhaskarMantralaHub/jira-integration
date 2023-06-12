@@ -21,6 +21,8 @@ public class Jira {
 
     private String issueType;
 
+    private String issueStatus;
+
     private String baseuri;
 
     private String domain;

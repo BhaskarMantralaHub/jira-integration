@@ -30,6 +30,7 @@ public class JiraService {
                 .baseUri(jira.getBaseuri())
                 .issueType(jira.getIssueType())
                 .project(jira.getProject())
+                .issueStatus(jira.getIssueStatus())
                 .build();
     }
 

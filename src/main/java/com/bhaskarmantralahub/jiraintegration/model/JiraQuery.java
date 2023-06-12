@@ -10,6 +10,7 @@ import lombok.Setter;
 public class JiraQuery {
 
     private String issueType;
+    private String issueStatus;
     private String project;
     private String baseUri;
 
@@ -25,6 +26,11 @@ public class JiraQuery {
             if (project != null) {
                 if (hasCondition) stringBuilder.append(" AND ");
                 stringBuilder.append("project=").append(project);
+                hasCondition = true;
+            }
+            if (issueStatus != null) {
+                if (hasCondition) stringBuilder.append(" AND ");
+                stringBuilder.append("status='").append(issueStatus).append("'");
                 hasCondition = true;
             }
 
