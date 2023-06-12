@@ -75,7 +75,7 @@ public class JiraService {
     private HttpHeaders httpHeaders() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Basic " + getBasicAuthHeader());
-        httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         return httpHeaders;
     }
 }
