@@ -23,4 +23,6 @@ public class Jira {
 
     private String baseuri;
 
+    private String domain;
+
 }

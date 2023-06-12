@@ -18,4 +18,6 @@ public class JiraIssue {
     private String updatedAt;
     private String createdAt;
     private String currentStatus;
+    private String searchUrl;
+    private String description;
 }

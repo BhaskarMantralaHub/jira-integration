@@ -6,4 +6,5 @@ jira:
   token:
   project: charter
   issueType: Epic
+  domain:
   baseuri:

@@ -33,6 +33,10 @@ public class JiraService {
                 .build();
     }
 
+    public String getJiraSearchUrl(String key) {
+        return jira.getDomain().concat("/browse/").concat(key);
+    }
+
 
     public List<JiraIssue> getEpics() {
         String jiraQuery = getJiraQuery();
@@ -60,6 +64,8 @@ public class JiraService {
                     .priority(fields.getPriority().getName())
                     .assignee(fields.getAssignee().getDisplayName())
                     .updatedAt(fields.getUpdated())
+                    .searchUrl(getJiraSearchUrl(issue.getKey()))
+                    .description(issue.getFields().getSummary())
                     .currentStatus(fields.getStatus().getName()).build();
             jiraIssues.add(jiraIssue);
         }
