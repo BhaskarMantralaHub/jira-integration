@@ -1,5 +1,6 @@
 package com.bhaskarmantralahub.jiraintegration.controller;
 
+import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.services.JiraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,8 @@ public class JiraController {
     JiraService jiraService;
 
     @GetMapping
-    public List<String> getEpics() {
-        System.out.println(jiraService.getEpics());
+    public List<JiraIssue> getEpics() {
+        System.out.println(jiraService.getEpics().toString());
         return jiraService.getEpics();
     }
 }

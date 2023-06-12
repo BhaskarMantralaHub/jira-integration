@@ -1,7 +1,9 @@
 package com.bhaskarmantralahub.jiraintegration.services;
 
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
+import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.model.JiraQuery;
+import com.bhaskarmantralahub.jiraintegration.schema.Fields;
 import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -10,6 +12,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -31,17 +34,37 @@ public class JiraService {
     }
 
 
-    public List<String> getEpics() {
-        ResponseEntity<JiraQueryResponse> responseEntity = new RestTemplate().exchange(getJiraQuery(),
+    public List<JiraIssue> getEpics() {
+        String jiraQuery = getJiraQuery();
+        System.out.println("Jira Query: " + jiraQuery);
+        ResponseEntity<JiraQueryResponse> responseEntity = new RestTemplate().exchange(jiraQuery,
                 HttpMethod.GET, new HttpEntity<>(httpHeaders()), JiraQueryResponse.class);
 
         System.out.println(responseEntity);
         if (!responseEntity.hasBody() || responseEntity.getBody() == null) return Collections.emptyList();
 
         JiraQueryResponse jiraQueryResponse = responseEntity.getBody();
-        if (jiraQueryResponse.getIssues().size() == 0) return Collections.emptyList();
+        List<Issue> issues = jiraQueryResponse.getIssues();
+        if (issues.size() == 0) return Collections.emptyList();
+        List<JiraIssue> jiraIssues = new ArrayList<>();
 
-        return jiraQueryResponse.getIssues().stream().map(Issue::getKey).toList();
+        for (Issue issue : issues) {
+            Fields fields = issue.getFields();
+            JiraIssue jiraIssue = JiraIssue
+                    .builder()
+                    .issueId(issue.getKey())
+                    .issueType(fields.getIssuetype().getName())
+                    .project(fields.getProject().getName())
+                    .reporter(fields.getReporter().getDisplayName())
+                    .createdAt(fields.getCreated())
+                    .priority(fields.getPriority().getName())
+                    .assignee(fields.getAssignee().getDisplayName())
+                    .updatedAt(fields.getUpdated())
+                    .currentStatus(fields.getStatus().getName()).build();
+            jiraIssues.add(jiraIssue);
+        }
+
+        return jiraIssues;
     }
 
     private String getBasicAuthHeader() {
