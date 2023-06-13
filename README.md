@@ -34,5 +34,5 @@ http://localhost:<PORT>/jira
 
 ## Swagger API
 ```api
-http://localhost:28080/jira/api
+http://localhost:28080/service/api
 ```
