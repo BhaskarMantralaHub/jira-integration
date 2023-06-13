@@ -9,20 +9,3 @@ jira:
   issueStatus:
   domain:
   baseuri:
-
-###################### DB config ######################
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5433/jira-integration
-    username: postgres
-    password: test
-
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-# Hibernate ddl auto (create, create-drop, validate, update)
-        ddl-auto: create
