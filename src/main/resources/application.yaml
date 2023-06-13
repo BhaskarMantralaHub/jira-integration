@@ -1,5 +1,10 @@
 server:
   port: 28080
+  servlet:
+      context-path: /jira
+springdoc:
+  swagger-ui:
+    path: /api
 
 jira:
   userName:
@@ -9,3 +14,11 @@ jira:
   issueStatus:
   domain:
   baseuri:
+
+############ Swagger Config ###############
+apiTitle: "Jira Integration Service"
+apiDescription: "Connects to JIRA through API and retrieves tickets based on JQL"
+apiVersion: "1.0.0"
+apiContactName: "Bhaskar Mantrala"
+apiContactEmail: ""
+apiContactUrl: "https://github.com/BhaskarMantralaHub"
