@@ -21,8 +21,11 @@ import java.util.List;
 @Service
 public class JiraService {
 
-    @Autowired
-    Jira jira;
+    public final Jira jira;
+
+    public JiraService(Jira jira) {
+        this.jira = jira;
+    }
 
     public String getJiraQuery() {
         return JiraQuery
