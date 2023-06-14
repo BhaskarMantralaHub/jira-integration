@@ -20,7 +20,7 @@ public class JiraQuery {
         public String build() {
             StringBuilder stringBuilder = new StringBuilder(baseUri);
             boolean hasCondition = false;
-            if (jquery != null) return jquery;
+            if (jquery != null) return stringBuilder.append(jquery).toString();
             if (issueType != null) {
                 stringBuilder.append("issueType=").append(issueType);
                 hasCondition = true;
