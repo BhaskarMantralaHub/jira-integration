@@ -13,12 +13,14 @@ public class JiraQuery {
     private String issueStatus;
     private String project;
     private String baseUri;
+    private String jquery;
 
     public static class JiraQueryBuilder {
 
         public String build() {
             StringBuilder stringBuilder = new StringBuilder(baseUri);
             boolean hasCondition = false;
+            if (jquery != null) return jquery;
             if (issueType != null) {
                 stringBuilder.append("issueType=").append(issueType);
                 hasCondition = true;

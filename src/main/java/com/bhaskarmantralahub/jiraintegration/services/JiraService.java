@@ -34,6 +34,7 @@ public class JiraService {
                 .issueType(jira.getIssueType())
                 .project(jira.getProject())
                 .issueStatus(jira.getIssueStatus())
+                .jquery(jira.getJquery())
                 .build();
     }
 

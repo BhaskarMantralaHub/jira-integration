@@ -9,6 +9,7 @@ jira:
   issueStatus:
   domain:
   baseuri:
+  jquery:
 
 ############ Swagger Config ###############
 apiTitle: "Jira Integration Service"

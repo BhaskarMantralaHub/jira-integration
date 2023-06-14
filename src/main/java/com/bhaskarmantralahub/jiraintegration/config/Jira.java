@@ -27,4 +27,6 @@ public class Jira {
 
     private String domain;
 
+    private String jquery;
+
 }
