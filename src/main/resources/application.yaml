@@ -7,14 +7,14 @@ springdoc:
     path: /api
 
 jira:
-  userName:
-  token:
+  userName: bhaskarmantrala@icloud.com
+  token: ATATT3xFfGF0gdwN0wT6FojDyHTsPe0cJcyg9hl_U1ymDpOkLDau61dDJECaQ9NQfh2T_3-asiqLF13t9mH0xaUMeTtt34SPF52gqmYYhlW_ii7AnYaPydKcdJEjEOH5cHxOV9pRCC6XN9lLIfKy-Td1iTTkKLq4yCY24sETiAcj-wmrKv26Xd8=38F3F292
   project:
   issueType:
   issueStatus:
-  domain:
-  baseuri:
-  jquery:
+  domain: https://bhaskarmantralahub.atlassian.net
+  baseuri: https://bhaskarmantralahub.atlassian.net/rest/api/2/search?jql=
+  jquery: project="charter" AND issueType="Epic" AND status="In Progress"
 
 ############ Swagger Config ###############
 apiTitle: "Jira Integration Service"
@@ -23,3 +23,6 @@ apiVersion: "1.0.0"
 apiContactName: "Bhaskar Mantrala"
 apiContactEmail: ""
 apiContactUrl: "https://github.com/BhaskarMantralaHub"
+
+############ Postgres ###############
+#postgres Path - /opt/homebrew/var/postgresql@14

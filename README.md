@@ -36,3 +36,26 @@ http://localhost:<PORT>/jira
 ```api
 http://localhost:28080/service/api
 ```
+
+## Postgressql
+* Install postgres using brew
+  ```shell
+    brew install postgres
+  ```
+  
+* Start postgres service
+    ```shell
+      brew services start postgress
+    ```
+* Default port: 5432
+* Test service
+    ```shell
+    ❯ ~ psql postgres
+    psql (14.8 (Homebrew))
+    Type "help" for help.
+    ```
+* Setup new user
+ ``` 
+  CREATE USER postgres SUPERUSER;
+  ```
+* Default password - `postgres`
