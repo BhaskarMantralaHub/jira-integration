@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "jira_search", schema = "jira-integration")
+@Table(name = "jira_search")
 @Getter
 @Setter
 @AllArgsConstructor

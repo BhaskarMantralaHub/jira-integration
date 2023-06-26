@@ -58,4 +58,6 @@ http://localhost:28080/service/api
  ``` 
   CREATE USER postgres SUPERUSER;
   ```
-* Default password - `postgres`
+### Default password - `postgres`
+### Postgressql GUI Editor
+https://www.pgadmin.org/download/pgadmin-4-macos/

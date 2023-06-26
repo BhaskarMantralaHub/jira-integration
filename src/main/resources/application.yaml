@@ -24,5 +24,18 @@ apiContactName: "Bhaskar Mantrala"
 apiContactEmail: ""
 apiContactUrl: "https://github.com/BhaskarMantralaHub"
 
-############ Postgres ###############
+############ Postgres ###############s
 #postgres Path - /opt/homebrew/var/postgresql@14
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jira_service
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true
