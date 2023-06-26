@@ -7,13 +7,13 @@ springdoc:
     path: /api
 
 jira:
-  userName: bhaskarmantrala@icloud.com
-  token: ATATT3xFfGF0gdwN0wT6FojDyHTsPe0cJcyg9hl_U1ymDpOkLDau61dDJECaQ9NQfh2T_3-asiqLF13t9mH0xaUMeTtt34SPF52gqmYYhlW_ii7AnYaPydKcdJEjEOH5cHxOV9pRCC6XN9lLIfKy-Td1iTTkKLq4yCY24sETiAcj-wmrKv26Xd8=38F3F292
+  userName:
+  token:
   project:
   issueType:
   issueStatus:
-  domain: https://bhaskarmantralahub.atlassian.net
-  baseuri: https://bhaskarmantralahub.atlassian.net/rest/api/2/search?jql=
+  domain:
+  baseuri:
   jquery: project="charter" AND issueType="Epic" AND status="In Progress"
 
 ############ Swagger Config ###############
