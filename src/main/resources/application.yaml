@@ -24,7 +24,7 @@ apiContactName: "Bhaskar Mantrala"
 apiContactEmail: ""
 apiContactUrl: "https://github.com/BhaskarMantralaHub"
 
-############ Postgres ###############s
+############ Postgres ###############
 #postgres Path - /opt/homebrew/var/postgresql@14
 spring:
   datasource:
@@ -34,8 +34,14 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc.lob.non_contextual_creation: true
+# Log SQL statements and transactions
+logging:
+  level:
+    org.springframework.transaction: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
