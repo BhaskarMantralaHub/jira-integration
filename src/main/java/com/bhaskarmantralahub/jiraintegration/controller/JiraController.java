@@ -63,18 +63,8 @@ public class JiraController {
 
         List<JiraSearchEntity> jiraSearchEntities = epics.stream().map(jiraIssue -> modelMapper.map(jiraIssue, JiraSearchEntity.class)).collect(Collectors.toList());
 
-        jiraSearchEntities.stream().forEach(jiraIssue -> {
-            if (jiraSearchRepository.existsById(jiraIssue.getIssueName())) {
-                System.out.println(jiraIssue.getIssueName() + " key already exists");
-                JiraSearchEntity jiraSearchEntity = jiraSearchRepository.findById(jiraIssue.getIssueName()).get();
-                jiraSearchEntity.setSearchUrl(jiraIssue.getSearchUrl());
-                jiraSearchEntity.setAssignee(jiraIssue.getAssignee());
-                jiraSearchEntity.setCreatedAt(jiraIssue.getCreatedAt());
-                jiraSearchEntity.setReporter(jiraIssue.getReporter());
-                jiraSearchEntity.setDescription(jiraIssue.getDescription());
-                jiraSearchEntity.setCurrentStatus(jiraIssue.getCurrentStatus());
-                jiraSearchRepository.save(jiraSearchEntity);
-            } else jiraSearchRepository.save(jiraIssue);
+        jiraSearchEntities.forEach(jiraIssue -> {
+            jiraService.saveJiraIssue(jiraIssue);
         });
 
         //Update timestamp

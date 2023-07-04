@@ -2,12 +2,15 @@ package com.bhaskarmantralahub.jiraintegration.services;
 
 import com.bhaskarmantralahub.jiraintegration.DateUtil;
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
+import com.bhaskarmantralahub.jiraintegration.entity.JiraSearchEntity;
 import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.model.JiraQuery;
+import com.bhaskarmantralahub.jiraintegration.repository.JiraSearchRepository;
 import com.bhaskarmantralahub.jiraintegration.schema.Fields;
 import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +24,9 @@ import java.util.List;
 public class JiraService {
 
     public final Jira jira;
+
+    @Autowired
+    JiraSearchRepository jiraSearchRepository;
 
     public JiraService(Jira jira) {
         this.jira = jira;
@@ -77,6 +83,26 @@ public class JiraService {
         }
 
         return jiraIssues;
+    }
+
+    public void updateJiraIssue(JiraSearchEntity jiraIssue) {
+        if (jiraSearchRepository.existsById(jiraIssue.getIssueName())) {
+            JiraSearchEntity jiraSearchEntity = jiraSearchRepository.findById(jiraIssue.getIssueName()).get();
+            jiraSearchEntity.setAssignee(jiraIssue.getAssignee());
+            jiraSearchEntity.setUpdatedAt(jiraIssue.getUpdatedAt());
+            jiraSearchEntity.setReporter(jiraIssue.getReporter());
+            jiraSearchEntity.setIssueType(jiraIssue.getIssueType());
+            jiraSearchEntity.setPriority(jiraIssue.getPriority());
+            jiraSearchEntity.setDescription(jiraIssue.getDescription());
+            jiraSearchEntity.setCurrentStatus(jiraIssue.getCurrentStatus());
+            jiraSearchRepository.save(jiraSearchEntity);
+        }
+    }
+
+    public void saveJiraIssue(JiraSearchEntity jiraIssue) {
+        if (jiraSearchRepository.existsById(jiraIssue.getIssueName())) {
+            updateJiraIssue(jiraIssue);
+        } else jiraSearchRepository.save(jiraIssue);
     }
 
     private String getBasicAuthHeader() {
