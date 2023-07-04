@@ -13,12 +13,13 @@ import javax.persistence.*;
 @ToString
 public class JiraSearchEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
 
-    @Column(name = "issueId", unique = true)
-    private String issueId;
+    @Id
+    @Column(name = "issueName")
+    private String issueName;
 
     @Column(name = "issueType")
     private String issueType;
@@ -44,9 +45,12 @@ public class JiraSearchEntity {
     @Column(name = "currentStatus")
     private String currentStatus;
 
-    @Column(name = "searchUrl", unique = true)
+    @Column(name = "searchUrl")
     private String searchUrl;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "lastUpdatedByService")
+    private String lastUpdatedByService;
 }

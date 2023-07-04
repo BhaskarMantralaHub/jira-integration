@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "JiraSearch", path ="JiraSearch")
-public interface JiraSearchRepository extends JpaRepository<JiraSearchEntity, Long> {
+public interface JiraSearchRepository extends JpaRepository<JiraSearchEntity, String> {
 }

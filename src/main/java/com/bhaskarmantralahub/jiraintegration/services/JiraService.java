@@ -1,5 +1,6 @@
 package com.bhaskarmantralahub.jiraintegration.services;
 
+import com.bhaskarmantralahub.jiraintegration.DateUtil;
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
 import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.model.JiraQuery;
@@ -7,13 +8,11 @@ import com.bhaskarmantralahub.jiraintegration.schema.Fields;
 import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class JiraService {
     }
 
 
-    public List<JiraIssue> getEpics() {
+    public List<JiraIssue> getIssues() {
         String jiraQuery = getJiraQuery();
         System.out.println("Jira Query: " + jiraQuery);
         ResponseEntity<JiraQueryResponse> responseEntity = new RestTemplate().exchange(jiraQuery,
@@ -61,7 +60,7 @@ public class JiraService {
             Fields fields = issue.getFields();
             JiraIssue jiraIssue = JiraIssue
                     .builder()
-                    .issueId(issue.getKey())
+                    .issueName(issue.getKey())
                     .issueType(fields.getIssuetype().getName())
                     .project(fields.getProject().getName())
                     .reporter(fields.getReporter().getDisplayName())
@@ -71,7 +70,9 @@ public class JiraService {
                     .updatedAt(fields.getUpdated())
                     .searchUrl(getJiraSearchUrl(issue.getKey()))
                     .description(issue.getFields().getSummary())
-                    .currentStatus(fields.getStatus().getName()).build();
+                    .currentStatus(fields.getStatus().getName())
+                    .lastUpdatedByService(DateUtil.getCurrentDate())
+                    .build();
             jiraIssues.add(jiraIssue);
         }
 
