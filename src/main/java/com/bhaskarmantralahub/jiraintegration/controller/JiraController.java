@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -57,6 +58,7 @@ public class JiraController {
     }
 
     @PostMapping("/save/all")
+//    @Scheduled(cron = "* * * * *")
     public @ResponseBody ResponseEntity saveAllEpics() {
         List<JiraLogEntity> jiraLogEntities = jiraLogRepository.findAll();
         List<JiraIssue> epics = getIssues();
