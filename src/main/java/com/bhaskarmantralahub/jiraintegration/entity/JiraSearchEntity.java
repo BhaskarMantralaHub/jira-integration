@@ -1,6 +1,8 @@
 package com.bhaskarmantralahub.jiraintegration.entity;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -11,14 +13,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@DynamicUpdate
 public class JiraSearchEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column(name = "issueId", unique = true)
-    private String issueId;
+    @Column(name = "issueName")
+    private String issueName;
 
     @Column(name = "issueType")
     private String issueType;
@@ -44,9 +44,12 @@ public class JiraSearchEntity {
     @Column(name = "currentStatus")
     private String currentStatus;
 
-    @Column(name = "searchUrl", unique = true)
+    @Column(name = "searchUrl")
     private String searchUrl;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "lastUpdatedByService")
+    private String lastUpdatedByService;
 }

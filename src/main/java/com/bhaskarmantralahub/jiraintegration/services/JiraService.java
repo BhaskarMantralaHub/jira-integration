@@ -1,8 +1,11 @@
 package com.bhaskarmantralahub.jiraintegration.services;
 
+import com.bhaskarmantralahub.jiraintegration.DateUtil;
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
+import com.bhaskarmantralahub.jiraintegration.entity.JiraSearchEntity;
 import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.model.JiraQuery;
+import com.bhaskarmantralahub.jiraintegration.repository.JiraSearchRepository;
 import com.bhaskarmantralahub.jiraintegration.schema.Fields;
 import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
@@ -13,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +24,9 @@ import java.util.List;
 public class JiraService {
 
     public final Jira jira;
+
+    @Autowired
+    JiraSearchRepository jiraSearchRepository;
 
     public JiraService(Jira jira) {
         this.jira = jira;
@@ -43,7 +48,7 @@ public class JiraService {
     }
 
 
-    public List<JiraIssue> getEpics() {
+    public List<JiraIssue> getIssues() {
         String jiraQuery = getJiraQuery();
         System.out.println("Jira Query: " + jiraQuery);
         ResponseEntity<JiraQueryResponse> responseEntity = new RestTemplate().exchange(jiraQuery,
@@ -61,7 +66,7 @@ public class JiraService {
             Fields fields = issue.getFields();
             JiraIssue jiraIssue = JiraIssue
                     .builder()
-                    .issueId(issue.getKey())
+                    .issueName(issue.getKey())
                     .issueType(fields.getIssuetype().getName())
                     .project(fields.getProject().getName())
                     .reporter(fields.getReporter().getDisplayName())
@@ -71,11 +76,33 @@ public class JiraService {
                     .updatedAt(fields.getUpdated())
                     .searchUrl(getJiraSearchUrl(issue.getKey()))
                     .description(issue.getFields().getSummary())
-                    .currentStatus(fields.getStatus().getName()).build();
+                    .currentStatus(fields.getStatus().getName())
+                    .lastUpdatedByService(DateUtil.getCurrentDate())
+                    .build();
             jiraIssues.add(jiraIssue);
         }
 
         return jiraIssues;
+    }
+
+    public void updateJiraIssue(JiraSearchEntity jiraIssue) {
+        if (jiraSearchRepository.existsById(jiraIssue.getIssueName())) {
+            JiraSearchEntity jiraSearchEntity = jiraSearchRepository.findById(jiraIssue.getIssueName()).get();
+            jiraSearchEntity.setAssignee(jiraIssue.getAssignee());
+            jiraSearchEntity.setUpdatedAt(jiraIssue.getUpdatedAt());
+            jiraSearchEntity.setReporter(jiraIssue.getReporter());
+            jiraSearchEntity.setIssueType(jiraIssue.getIssueType());
+            jiraSearchEntity.setPriority(jiraIssue.getPriority());
+            jiraSearchEntity.setDescription(jiraIssue.getDescription());
+            jiraSearchEntity.setCurrentStatus(jiraIssue.getCurrentStatus());
+            jiraSearchRepository.save(jiraSearchEntity);
+        }
+    }
+
+    public void saveJiraIssue(JiraSearchEntity jiraIssue) {
+        if (jiraSearchRepository.existsById(jiraIssue.getIssueName())) {
+            updateJiraIssue(jiraIssue);
+        } else jiraSearchRepository.save(jiraIssue);
     }
 
     private String getBasicAuthHeader() {

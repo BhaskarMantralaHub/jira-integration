@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Builder
 public class JiraIssue {
-    private String issueId;
+    private String issueName;
     private String issueType;
     private String project;
     private String priority;
@@ -20,4 +20,5 @@ public class JiraIssue {
     private String currentStatus;
     private String searchUrl;
     private String description;
+    private String lastUpdatedByService;
 }
