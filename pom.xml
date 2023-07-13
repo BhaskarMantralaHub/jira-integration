@@ -91,42 +91,16 @@
 				</configuration>
 			</plugin>
 
-<!--			<plugin>-->
-<!--				<groupId>com.diffplug.spotless</groupId>-->
-<!--				<artifactId>spotless-maven-plugin</artifactId>-->
-<!--				<version>2.37.0</version>-->
-<!--				<configuration>-->
-<!--					<java>-->
-<!--						<includes>-->
-<!--							<include>src/main/java/**/*.java</include> &lt;!&ndash; Check application code &ndash;&gt;-->
-<!--							<include>src/test/java/**/*.java</include> &lt;!&ndash; Check application tests code &ndash;&gt;-->
-<!--						</includes>-->
-<!--						<excludes>-->
-<!--							<exclude>src/main/java/com/bhaskarmantralahub/jiraintegration/schema/*</exclude>-->
-<!--						</excludes>-->
-<!--						<googleJavaFormat>-->
-<!--							<version>1.17.0</version>-->
-<!--							<style>GOOGLE</style>-->
-<!--						</googleJavaFormat>-->
-<!--						<removeUnusedImports />-->
-<!--						<importOrder />-->
-<!--						<trimTrailingWhitespace/>-->
-<!--						<indent>-->
-<!--							<tabs>true</tabs>-->
-<!--							<spacesPerTab>4</spacesPerTab>-->
-<!--						</indent>-->
-<!--					</java>-->
-<!--				</configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>validate</id>-->
-<!--                        <phase>validate</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>apply</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--			</plugin>-->
+			<plugin>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>2.27.2</version>
+				<configuration>
+					<java>
+						<removeUnusedImports/>
+					</java>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>io.github.dathin</groupId>
@@ -177,6 +151,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
