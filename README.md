@@ -1,5 +1,9 @@
 # jira-integration
 
+## Architecture Diagram
+
+![img.png](Flowcharts.jpeg)
+
 ## Pre-requisites
 * Maven
 * Java 17
