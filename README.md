@@ -36,7 +36,7 @@ jira:
 http://localhost:<PORT>/jira
 ```
 
-## Swagger API
+## Swagger API :D
 ```api
 http://localhost:28080/service/api
 ```
