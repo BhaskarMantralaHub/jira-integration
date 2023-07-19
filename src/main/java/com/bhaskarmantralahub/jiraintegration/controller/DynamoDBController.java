@@ -5,8 +5,6 @@ import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.repository.JiraSearchDynamoDBRepository;
 import com.bhaskarmantralahub.jiraintegration.services.JiraService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
