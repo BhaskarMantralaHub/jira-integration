@@ -26,10 +26,10 @@ public class JiraController {
     @Autowired
     JiraService jiraService;
 
-    @Autowired
+//    @Autowired
     JiraSearchRepository jiraSearchRepository;
 
-    @Autowired
+//    @Autowired
     JiraLogRepository jiraLogRepository;
 
     @Autowired

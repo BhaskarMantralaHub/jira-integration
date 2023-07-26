@@ -11,6 +11,7 @@ import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -23,16 +24,21 @@ import java.util.List;
 @Service
 public class JiraService {
 
-    public final Jira jira;
-
-    @Autowired
+//    @Autowired
     JiraSearchRepository jiraSearchRepository;
 
-    public JiraService(Jira jira) {
-        this.jira = jira;
+    @Autowired
+    JiraCredentialsService jiraCredentialsService;
+
+    @Value("${dynamoDB.env}")
+    private String env;
+
+    public Jira getJira() {
+        return jiraCredentialsService.getCreds(env);
     }
 
     public String getJiraQuery() {
+        Jira jira = getJira();
         return JiraQuery
                 .builder()
                 .baseUri(jira.getBaseuri())
@@ -44,6 +50,7 @@ public class JiraService {
     }
 
     public String getJiraSearchUrl(String key) {
+        Jira jira = getJira();
         return jira.getDomain().concat("/browse/").concat(key);
     }
 
@@ -106,6 +113,7 @@ public class JiraService {
     }
 
     private String getBasicAuthHeader() {
+        Jira jira = getJira();
         String credentials = String.format("%s:%s", jira.getUserName(), jira.getToken());
         return new String(Base64.encodeBase64(credentials.getBytes()));
     }
