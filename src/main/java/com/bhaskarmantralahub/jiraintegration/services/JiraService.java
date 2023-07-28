@@ -13,6 +13,7 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -90,6 +91,11 @@ public class JiraService {
         }
 
         return jiraIssues;
+    }
+
+    @Scheduled(cron = "0 */6 * * *")
+    public void refreshJiraDefects() {
+        System.out.println("Refreshing Jira defects");
     }
 
     public void updateJiraIssue(JiraSearchEntity jiraIssue) {
