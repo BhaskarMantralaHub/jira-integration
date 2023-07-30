@@ -2,6 +2,7 @@ package com.bhaskarmantralahub.jiraintegration.services;
 
 import com.bhaskarmantralahub.jiraintegration.DateUtil;
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
+import com.bhaskarmantralahub.jiraintegration.config.JiraField;
 import com.bhaskarmantralahub.jiraintegration.entity.JiraSearchEntity;
 import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
 import com.bhaskarmantralahub.jiraintegration.model.JiraQuery;
@@ -9,6 +10,8 @@ import com.bhaskarmantralahub.jiraintegration.repository.JiraSearchRepository;
 import com.bhaskarmantralahub.jiraintegration.schema.Fields;
 import com.bhaskarmantralahub.jiraintegration.schema.Issue;
 import com.bhaskarmantralahub.jiraintegration.schema.JiraQueryResponse;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,15 +20,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 
 @Service
 public class JiraService {
 
-//    @Autowired
+    //    @Autowired
     JiraSearchRepository jiraSearchRepository;
 
     @Autowired
@@ -55,12 +57,25 @@ public class JiraService {
         return jira.getDomain().concat("/browse/").concat(key);
     }
 
+    private <T> ResponseEntity<T> getJiraResponse(String jiraQuery, Class<T> input) {
+        return new RestTemplate().exchange(jiraQuery,
+                HttpMethod.GET, new HttpEntity<>(httpHeaders()), input);
+    }
+
+    private String getJiraResponseAsString() {
+        String jiraQuery = getJiraQuery();
+        System.out.println("Jira Query: " + jiraQuery);
+        ResponseEntity<String> responseEntity = getJiraResponse(jiraQuery, String.class);
+        if (!responseEntity.hasBody() || responseEntity.getBody() == null) return "{}";
+        return responseEntity.getBody();
+    }
+
 
     public List<JiraIssue> getIssues() {
         String jiraQuery = getJiraQuery();
         System.out.println("Jira Query: " + jiraQuery);
-        ResponseEntity<JiraQueryResponse> responseEntity = new RestTemplate().exchange(jiraQuery,
-                HttpMethod.GET, new HttpEntity<>(httpHeaders()), JiraQueryResponse.class);
+
+        ResponseEntity<JiraQueryResponse> responseEntity = getJiraResponse(jiraQuery, JiraQueryResponse.class);
 
         System.out.println(responseEntity);
         if (!responseEntity.hasBody() || responseEntity.getBody() == null) return Collections.emptyList();
@@ -93,9 +108,49 @@ public class JiraService {
         return jiraIssues;
     }
 
-    @Scheduled(cron = "0 */6 * * *")
+    @Scheduled(cron = "0 */6 * * * *")
     public void refreshJiraDefects() {
         System.out.println("Refreshing Jira defects");
+    }
+
+    public List<Map<String, String>> refreshData() {
+        String jsonResponse = getJiraResponseAsString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Map<String, String>> response = new ArrayList<>();
+        Jira jira = jiraCredentialsService.getCreds(env);
+        JiraField[] jiraFields = jira.getJiraFields();
+        try {
+            JsonNode root = objectMapper.readTree(jsonResponse);
+            JsonNode issues = root.path("issues");
+            issues.forEach(issue -> {
+                JsonNode fieldsNode = issue.path("fields");
+                Map<String, String> valuesFromResponse = new HashMap<>();
+
+                // Fetch values based on the mapping
+                for (JiraField entry : jiraFields) {
+                    String field = entry.getDynamoColumName();
+                    String responseKey = entry.getFieldMapping();
+                    String[] keys = responseKey.split("\\.");
+                    JsonNode node = fieldsNode;
+                    for (String key : keys) {
+                        node = node.path(key);
+                        if (node.isMissingNode()) {
+                            break;
+                        }
+                    }
+                    valuesFromResponse.put(field, node.isMissingNode() ? null : node.asText());
+                }
+                response.add(valuesFromResponse);
+                // Print the fetched values
+                System.out.println(response);
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return response;
     }
 
     public void updateJiraIssue(JiraSearchEntity jiraIssue) {

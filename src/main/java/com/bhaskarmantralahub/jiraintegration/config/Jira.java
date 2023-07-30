@@ -29,4 +29,6 @@ public class Jira {
 
     private String jquery;
 
+    private JiraField[] jiraFields;
+
 }

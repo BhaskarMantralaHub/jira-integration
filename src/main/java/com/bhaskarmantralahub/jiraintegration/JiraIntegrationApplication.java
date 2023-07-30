@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, XADataSourceAutoConfiguration.class})
 @EnableScheduling
-public class JiraIntegrationApplication {
+public class   JiraIntegrationApplication {
 
 	@Bean
 	public ModelMapper modelMapper() {
