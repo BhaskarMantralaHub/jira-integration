@@ -39,25 +39,11 @@ public class DynamoDBController {
 
     @GetMapping("/save/all")
     public List<JiraSearchEntity> saveAll() {
-        List<JiraIssue> issues = jiraService.getIssues();
-        List<JiraSearchEntity> allEntities = new ArrayList<>();
+        List<JiraSearchEntity> issues = jiraService.getIssues();
         issues.forEach(jiraIssue -> {
-            JiraSearchEntity jiraSearchEntity = new JiraSearchEntity();
-            jiraSearchEntity.setAssignee(jiraIssue.getAssignee());
-            jiraSearchEntity.setIssueName(jiraIssue.getIssueName());
-            jiraSearchEntity.setIssueType(jiraIssue.getIssueType());
-            jiraSearchEntity.setCreatedAt(jiraIssue.getCreatedAt());
-            jiraSearchEntity.setDescription(jiraIssue.getDescription());
-            jiraSearchEntity.setCurrentStatus(jiraIssue.getCurrentStatus());
-            jiraSearchEntity.setUpdatedAt(jiraIssue.getUpdatedAt());
-            jiraSearchEntity.setPriority(jiraIssue.getPriority());
-            jiraSearchEntity.setProject(jiraIssue.getProject());
-            jiraSearchEntity.setSearchUrl(jiraIssue.getSearchUrl());
-            jiraSearchEntity.setReporter(jiraIssue.getReporter());
-            jiraSearchDynamoDBRepository.save(jiraSearchEntity);
-            allEntities.add(jiraSearchEntity);
+            jiraSearchDynamoDBRepository.save(jiraIssue);
         });
-        return allEntities;
+        return issues;
     }
 
     @GetMapping("read/save/all")

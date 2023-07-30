@@ -17,6 +17,7 @@ import javax.persistence.*;
 @ToString
 @DynamicUpdate
 @DynamoDBTable(tableName = "jira_search")
+@Builder
 public class JiraSearchEntity {
 
     @Id

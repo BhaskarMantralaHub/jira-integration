@@ -36,9 +36,9 @@ public class JiraController {
     ModelMapper modelMapper;
 
     @GetMapping
-    public List<JiraIssue> getIssues() {
+    public List<JiraSearchEntity> getIssues() {
         System.out.println(jiraService.getIssues().toString());
-        List<JiraIssue> issues = jiraService.getIssues();
+        List<JiraSearchEntity> issues = jiraService.getIssues();
         List<JiraLogEntity> jiraLogEntities = jiraLogRepository.findAll();
         String lastUpdatedAt = jiraLogEntities.get(0).getLastUpdatedAt();
         return issues.stream().filter(jiraIssue -> {
@@ -60,7 +60,7 @@ public class JiraController {
 //    @Scheduled(cron = "* * * * *")
     public @ResponseBody ResponseEntity saveAllEpics() {
         List<JiraLogEntity> jiraLogEntities = jiraLogRepository.findAll();
-        List<JiraIssue> epics = getIssues();
+        List<JiraSearchEntity> epics = getIssues();
 
         List<JiraSearchEntity> jiraSearchEntities = epics.stream().map(jiraIssue -> modelMapper.map(jiraIssue, JiraSearchEntity.class)).collect(Collectors.toList());
 

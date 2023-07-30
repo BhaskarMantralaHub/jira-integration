@@ -71,7 +71,7 @@ public class JiraService {
     }
 
 
-    public List<JiraIssue> getIssues() {
+    public List<JiraSearchEntity> getIssues() {
         String jiraQuery = getJiraQuery();
         System.out.println("Jira Query: " + jiraQuery);
 
@@ -83,11 +83,11 @@ public class JiraService {
         JiraQueryResponse jiraQueryResponse = responseEntity.getBody();
         List<Issue> issues = jiraQueryResponse.getIssues();
         if (issues.size() == 0) return Collections.emptyList();
-        List<JiraIssue> jiraIssues = new ArrayList<>();
+        List<JiraSearchEntity> jiraIssues = new ArrayList<>();
 
         for (Issue issue : issues) {
             Fields fields = issue.getFields();
-            JiraIssue jiraIssue = JiraIssue
+            JiraSearchEntity jiraIssue = JiraSearchEntity
                     .builder()
                     .issueName(issue.getKey())
                     .issueType(fields.getIssuetype().getName())
