@@ -6,15 +6,15 @@ springdoc:
   swagger-ui:
     path: /api
 
-jira:
-  userName:
-  token:
-  project:
-  issueType:
-  issueStatus:
-  domain:
-  baseuri:
-  jquery: project="charter" AND issueType="Epic" AND status="In Progress"
+#jira:
+#  userName: bhaskarmantrala@icloud.com
+#  token: ATATT3xFfGF0Pd5C4NySROijpoAgYSUBuWkYGbv9s6MX7zeXEp4PRlFN8bneTDrYXouXVemM2-E7loNHTvufmnj2rpEm54BUT1R4ujzGBJ08Y8X-ZfE1PPCYC-KaK6vi4_JveVqVgPEgiZmDDDJ9-nnOmI3eVLb2DoUdLOs6yCbo-I_HUOPo71o=2A70D21E
+#  project:
+#  issueType:
+#  issueStatus:
+#  domain: https://bhaskarmantralahub.atlassian.net
+#  baseuri: https://bhaskarmantralahub.atlassian.net/rest/api/2/search?jql=
+#  jquery: project="charter" AND issueType="Epic" AND status="In Progress"
 
 ############ Swagger Config ###############
 apiTitle: "Jira Integration Service"
@@ -26,24 +26,32 @@ apiContactUrl: "https://github.com/BhaskarMantralaHub"
 
 ############ Postgres ###############
 #postgres Path - /opt/homebrew/var/postgresql@14
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/jira_service
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        jdbc.lob.non_contextual_creation: true
-        format_sql: true
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/jira_service
+#    username: postgres
+#    password: postgres
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        jdbc.lob.non_contextual_creation: true
+#        format_sql: true
 # Log SQL statements and transactions
 #logging:
 #  level:
 #    org.springframework.transaction: DEBUG
 #    org.hibernate.SQL: DEBUG
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+############ Dynamo DB ###############
+dynamoDB:
+  accessKey: AKIAQ2FOJXKTJVJ45FUS
+  secretKey: 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
+  endpoint: dynamodb.us-east-1.amazonaws.com
+  region: us-east-1
+  env: DEV

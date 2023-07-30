@@ -124,8 +124,9 @@ public class JiraService {
             JsonNode issues = root.path("issues");
             issues.forEach(issue -> {
                 JsonNode fieldsNode = issue.path("fields");
+                JsonNode issueName = issue.path("key");
                 Map<String, String> valuesFromResponse = new HashMap<>();
-
+                valuesFromResponse.put("issueName", issueName.asText());
                 // Fetch values based on the mapping
                 for (JiraField entry : jiraFields) {
                     String field = entry.getDynamoColumName();
