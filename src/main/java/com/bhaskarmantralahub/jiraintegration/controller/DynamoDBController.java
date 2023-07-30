@@ -3,7 +3,6 @@ package com.bhaskarmantralahub.jiraintegration.controller;
 import com.bhaskarmantralahub.jiraintegration.config.Jira;
 import com.bhaskarmantralahub.jiraintegration.entity.JiraSearchEntity;
 import com.bhaskarmantralahub.jiraintegration.model.JiraIssue;
-import com.bhaskarmantralahub.jiraintegration.model.MapToEntity;
 import com.bhaskarmantralahub.jiraintegration.repository.JiraSearchDynamoDBRepository;
 import com.bhaskarmantralahub.jiraintegration.services.JiraCredentialsService;
 import com.bhaskarmantralahub.jiraintegration.services.JiraService;
@@ -57,18 +56,6 @@ public class DynamoDBController {
             jiraSearchDynamoDBRepository.save(jiraSearchEntity);
             allEntities.add(jiraSearchEntity);
         });
-        return allEntities;
-    }
-
-    @GetMapping("read/save/all")
-    public List<JiraSearchEntity> readConfigAndsaveAll() {
-        List<Map<String, String>> maps = jiraService.refreshData();
-        List<JiraSearchEntity> allEntities = new ArrayList<>();
-        for (Map<String, String> map : maps) {
-            JiraSearchEntity jiraSearchEntity = MapToEntity.convert(map);
-            jiraSearchDynamoDBRepository.save(jiraSearchEntity);
-            allEntities.add(jiraSearchEntity);
-        }
         return allEntities;
     }
 
